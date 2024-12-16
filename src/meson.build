@@ -118,6 +118,11 @@ if with_gfxstream_vk
   endif
   subdir('gfxstream')
 endif
+if with_magma
+  subdir('virtio/magma-gpu-rs/lib')
+  subdir('magma')
+  subdir('magma/ffi')
+endif
 if with_gallium_asahi or with_asahi_vk or with_tools.contains('asahi')
   subdir('asahi')
 endif
