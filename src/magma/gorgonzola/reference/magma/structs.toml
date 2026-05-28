@@ -1,0 +1,43 @@
+# Copyright 2026 The Magma GPU Project
+# SPDX-License-Identifier: MIT
+
+[[structs]]
+name = 'MagmaMemoryType'
+members = [
+    { name = "property_flags", type = "u32" },
+    { name = "heap_idx", type = "u32" },
+]
+
+[[structs]]
+name = 'MagmaHeap'
+members = [
+    { name = "heap_size", type = "u64" },
+    { name = "heap_flags", type = "u64" },
+]
+
+[[structs]]
+name = 'MagmaMemoryProperties'
+members = [
+    { name = "memory_type_count", type = "u32" },
+    { name = "memory_heap_count", type = "u32" },
+    { name = "memory_types", type = "MagmaMemoryType",  array_size = "MAGMA_MAX_MEMORY_TYPES" },
+    { name = "memory_heaps", type = "MagmaHeap", array_size = "MAGMA_MAX_MEMORY_HEAPS" },
+]
+
+[[extensible_structs]]
+name = 'MagmaCreateBufferInfo'
+stype = { name = "CreateBufferInfo", value = "0x00000001" }
+members = [
+    { name = "memory_type_idx", type = "u32" },
+    { name = "alignment", type = "u32" },
+    { name = "common_flags", type = "u32" },
+    { name = "vendor_flags", type = "u32" },
+    { name = "size", type = "u64" },
+]
+
+[[structs]]
+name = 'MagmaHeapBudget'
+members = [
+    { name = "budget", type = "u64" },
+    { name = "usage", type = "u64" },
+]

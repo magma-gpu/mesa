@@ -1,0 +1,56 @@
+# Copyright 2026 The Magma GPU Project
+# SPDX-License-Identifier: MIT
+api_objects = [
+    'MagmaContext',
+    'MagmaBuffer',
+    'MagmaPhysicalDevice',
+    'MagmaDevice'
+]
+
+[[constants]]
+name = "MAGMA_MAX_PHYSICAL_DEVICES"
+type = "u32"
+value = "8"
+
+[[constants]]
+name = "MAGMA_MAX_MEMORY_HEAPS"
+type = "usize"
+value = "32"
+
+[[constants]]
+name = "MAGMA_MAX_MEMORY_TYPES"
+type = "usize"
+value = "16"
+
+[[enums]]
+name = 'MagmaVendorId'
+type = "u16"
+[enums.entries]
+AMD = "0x1002"
+ARM = "0x13B5"
+Intel = "0x8086"
+Qualcomm = "0x5413"
+
+[[enums]]
+name = 'MagmaStatus'
+type = "i32"
+[enums.entries]
+Success = "0"
+InternalError = "-1"
+InvalidArgs = "-2"
+AccessDenied = "-3"
+MemoryError = "-4"
+ContextKilled = "-5"
+TimedOut = "-6"
+Unimplemented = "-7"
+
+[[flags]]
+name = 'MagmaMemoryProperty'
+type = "u32"
+[flags.entries]
+DeviceLocalBit = "0x00000001"
+HostVisibleBit = "0x00000002"
+HostCoherentBit = "0x00000004"
+HostCachedBit = "0x00000008"
+LazilyAllocatedBit = "0x00000010"
+ProtectedBit = "0x00000020"

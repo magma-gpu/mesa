@@ -1,0 +1,83 @@
+# Copyright 2026 The Magma GPU Project
+# SPDX-License-Identifier: MIT
+
+[[commands]]
+name = "magma_enumerate_physical_devices"
+target = "enumerate_devices"
+inputs = [
+    { name = "physical_devices", type = "MagmaPhysicalDevice", array_size = "MAGMA_MAX_PHYSICAL_DEVICES", direction = "inout" },
+    { name = "num_devices", type = "uint32_t", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "ffi_header", "rust" ]
+response = true
+
+[[commands]]
+name = "MagmaCreateDevice"
+inputs = [
+    { name = "physical_device", type = "MagmaPhysicalDevice", direction = "in" },
+    { name = "device", type = "MagmaDevice", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "common" ]
+response = true
+
+[[commands]]
+name = "MagmaGetMemoryProperties"
+inputs = [
+    { name = "device", type = "MagmaDevice", direction = "in" },
+    { name = "mem_props", type = "MagmaMemoryProperties", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "common" ]
+response = true
+
+[[commands]]
+name = "MagmaGetMemoryBudget"
+inputs = [
+    { name = "device", type = "MagmaDevice", direction = "in" },
+    { name = "heap_idx", type = "uint32_t", direction = "in" },
+    { name = "budget", type = "MagmaHeapBudget", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "common" ]
+response = true
+
+[[commands]]
+name = "MagmaCreateBuffer"
+inputs = [
+    { name = "device", type = "MagmaDevice", direction = "in" },
+    { name = "info", type = "MagmaCreateBufferInfo", direction = "in" },
+    { name = "buffer_out", type = "MagmaBuffer", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "common" ]
+response = true
+
+[[commands]]
+name = "MagmaCreateContext"
+inputs = [
+    { name = "device", type = "MagmaDevice", direction = "in" },
+    { name = "context", type = "MagmaContext", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "common" ]
+response = true
+
+[[commands]]
+name = "magma_device_close"
+inputs = [
+    { name = "device", type = "MagmaDevice", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "common" ]
+destructor = true
+
+[[commands]]
+name = "magma_physical_device_close"
+inputs = [
+    { name = "physical_device", type = "MagmaPhysicalDevice", direction = "inout" },
+]
+output = "MagmaStatus"
+aspects = [ "common" ]
+destructor = true
